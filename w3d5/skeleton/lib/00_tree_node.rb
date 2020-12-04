@@ -15,12 +15,19 @@ class PolyTreeNode
     end
 
     def value
-        #value at node
+        @value
     end
 
     def parent=(node_instance)
-        @parent = node_instance
-        node_instance.children << self
+        
+        if @parent != nil
+            old_parent = @parent
+            @parent = node_instance
+            if !@parent.children.include?(self)
+                node_instance.children << self 
+            end
+        end
     end
 
 end
+
