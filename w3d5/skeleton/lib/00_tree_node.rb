@@ -47,12 +47,27 @@ class PolyTreeNode
     end
 
     def dfs(target_value)
+        # debugger
         return self if self.value == target_value
-        return nil if @children.empty?
         @children.each do |child|
             memo = child.dfs(target_value)
-            
+            return memo if memo != nil 
         end
+        nil#if @children.empty?
+    end
+
+    def bfs(target_value)
+        arr = []
+        arr << self
+        while arr.length > 0
+            if arr[0].value == target_value
+                return arr[0]
+            else
+                arr += arr[0].children
+                arr.shift
+            end
+        end
+        nil
     end
 
 end
