@@ -29,8 +29,11 @@ class PolyTreeNode
         else
             old_parent = @parent.dup
             old_parent.children.delete(self)
-            if !@parent.children.include?(self)
+            if !@parent.children.include?(self) && node_instance != nil
+                @parent = node_instance
                 node_instance.children << self 
+            elsif node_instance == nil
+                @parent = node_instance
             end
         end
     end
