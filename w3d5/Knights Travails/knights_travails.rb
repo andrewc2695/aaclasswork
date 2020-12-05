@@ -5,6 +5,11 @@ class Knight
         starting_node = PolyTreeNode.new(@starting_pos) #might need "@"
     end
     #class methond self.valid_moves
+
+    def self.valid_moves(pos)
+        #finds all postions from current
+    end
+
     def initialize(starting_pos)
         @knight = knight
         @starting_pos = starting_pos
@@ -20,8 +25,11 @@ class Knight
         @starting_pos
     end
 
-    def new_move_positions(pos)
-
+    def new_move_positions(current_pos)
+        new_pos = Knight.valid_moves(current_pos).select do |move|
+                !(@considered_pos.include?(move))
+            end
+        @considered_pos += new_pos
     end
 
 
