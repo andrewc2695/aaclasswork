@@ -1,4 +1,5 @@
 require_relative "../skeleton/lib/00_tree_node.rb"
+require "byebug"
 
 class Knight
     def self.root_node
@@ -8,6 +9,14 @@ class Knight
 
     def self.valid_moves(pos)
         #finds all postions from current
+        debugger
+        possible_positions = []
+        moves = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
+         moves.each do |move|
+            # if ((pos[0] + move[0] <= 7)  &&  (pos[1] + move[1] <= 7)) && ((pos[0] + move[0] >= 0)  &&  (pos[1] + move[1] >= 0))
+            possible_positions << [(pos[0] + move[0]), (pos[1] + move[1])]
+        end
+        possible_positions.select  {|move| move.valid_move?} ##write valid move
     end
 
     def initialize(starting_pos)
@@ -32,8 +41,14 @@ class Knight
         @considered_pos += new_pos
     end
 
+    #part 1 phase 2
+
+    def build_move_tree
+
+    end
 
 end
 
 
 # k = Knight.new([0,0])
+Knight.valid_moves([0,0])
