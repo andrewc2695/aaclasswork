@@ -25,6 +25,7 @@ class Knight
         @starting_pos = starting_pos
         @considered_pos = [starting_pos]
         @root = Knight.root_node(@starting_pos)
+        self.build_move_tree
     end
 
     
@@ -62,7 +63,46 @@ class Knight
         end
         nil
     end
-    # def build_move_tree
+
+    def find_path(end_position)
+        move_q = [@root]
+        while move_q.length > 0
+            if move_q[0].value != end_position
+                move_q += move_q[0].children
+                move_q.shift
+            else
+                return trace_path_back(move_q[0])
+            end
+        end
+        nil
+    end
+
+    def trace_path_back(node_instance)
+        winning_arr = []
+        winning_arr.unshift(node_instance)
+        until winning_arr[0] == @root
+            winning_arr.unshift(winning_arr[0].parent)
+        end
+        return winning_arr.map {|ele| ele.value}
+    end
+end
+  
+
+k = Knight.new([0,0])
+p k.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p k.find_path([6, 2])  # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+# k.build_move_tree
+# p k.considered_pos.length
+# Knight.valid_moves([0,0])
+
+
+
+
+
+
+
+
+  # def build_move_tree
     #     move_q = [@root]
     #     while move_q.length > 0
     #         if move_q[0].value != target_position ##pseudo
@@ -86,12 +126,4 @@ class Knight
     #     nil
     # end
 
-end
-
-
-
-
-k = Knight.new([0,0])
-k.build_move_tree
-p k.considered_pos.length
-# Knight.valid_moves([0,0])
+    #PHASE 3 #########!!!!!
