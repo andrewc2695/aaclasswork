@@ -9,14 +9,19 @@ class Knight
 
     def self.valid_moves(pos)
         #finds all postions from current
-        debugger
+        # debugger
         possible_positions = []
         moves = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
          moves.each do |move|
             # if ((pos[0] + move[0] <= 7)  &&  (pos[1] + move[1] <= 7)) && ((pos[0] + move[0] >= 0)  &&  (pos[1] + move[1] >= 0))
             possible_positions << [(pos[0] + move[0]), (pos[1] + move[1])]
         end
-        possible_positions.select  {|move| move.valid_move?} ##write valid move
+        possible_positions.select {|move| Knight.valid_move?(move)} ##write valid move
+    end
+
+     def self.valid_move?(move)
+        return true if ((move[0] <= 7)  &&  (move[1]  <= 7)) && ((move[0] >= 0)  &&  (move[1] >= 0))
+        false
     end
 
     def initialize(starting_pos)
@@ -26,6 +31,7 @@ class Knight
         Knight.root_node
     end
 
+    
     def knight
         @knight
     end
@@ -39,11 +45,16 @@ class Knight
                 !(@considered_pos.include?(move))
             end
         @considered_pos += new_pos
+        new_pos
     end
 
     #part 1 phase 2
 
     def build_move_tree
+        move_q = []
+        #run thru new pos array,
+        #instantiate new trees from each move
+        #go thru bfs find new moves repeat
 
     end
 
