@@ -5,18 +5,14 @@ class Knight
     def self.root_node
         starting_node = PolyTreeNode.new(@starting_pos) #might need "@"
     end
-    #class methond self.valid_moves
 
     def self.valid_moves(pos)
-        #finds all postions from current
-        # debugger
         possible_positions = []
         moves = [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
          moves.each do |move|
-            # if ((pos[0] + move[0] <= 7)  &&  (pos[1] + move[1] <= 7)) && ((pos[0] + move[0] >= 0)  &&  (pos[1] + move[1] >= 0))
             possible_positions << [(pos[0] + move[0]), (pos[1] + move[1])]
         end
-        possible_positions.select {|move| Knight.valid_move?(move)} ##write valid move
+        possible_positions.select {|move| Knight.valid_move?(move)} 
     end
 
      def self.valid_move?(move)
@@ -28,7 +24,7 @@ class Knight
         @knight = knight
         @starting_pos = starting_pos
         @considered_pos = [starting_pos]
-        Knight.root_node
+        @root = Knight.root_node
     end
 
     
@@ -51,10 +47,26 @@ class Knight
     #part 1 phase 2
 
     def build_move_tree
-        move_q = []
+        move_q = [@root]
+        while move_q.length > 0
+            if move_q[0].value != target_position ##pseudo
+                children = new_move_positions(move_q[0].value)
+                children.each do |kid|
+                 move_q[0].add_child(PolyTreeNode.new(kid))
+                 move_q[0].children[-1].parent = move_q[0]
+                end
+                move_q += move_q[0].children
+                move_q.shift
+            else
+                #whatever it is when we win, the array that gets there. Look at its value, then its parent, then its value, then its parent, etc. to root.
+            end
+        end
+        nil
+
         #run thru new pos array,
         #instantiate new trees from each move
         #go thru bfs find new moves repeat
+
 
     end
 
