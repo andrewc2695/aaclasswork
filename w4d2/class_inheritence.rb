@@ -37,7 +37,7 @@ class Manager < Employee
  
         @employees.each do |worker|
             if worker.is_a?(Manager)
-                sub_salary += worker.subordinate_salary
+                sub_salary += worker.subordinate_salary + worker.salary
             else
                 sub_salary += worker.salary
             end
