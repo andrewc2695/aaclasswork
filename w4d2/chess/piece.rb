@@ -10,6 +10,7 @@ class Piece
     end
 
     def empty?(pos)
+        #check if different color piece
         row, col = pos[0], pos[1]
         return false if @board[row][col] != nil
         true

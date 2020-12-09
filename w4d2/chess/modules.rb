@@ -11,7 +11,8 @@ module Slideable
     end
     
     def moves
-
+        moves_array = []
+        grow_unblocked_moves_in_dir(dx, dy)
     end
 
     private
@@ -27,17 +28,24 @@ module Slideable
         #piece_move_dirs should return array
         unblocked_moves = []
         position = @pos
-        
-        if position[0] + dx < 7 && position[0] + dx > 0
-            if position[1] + dy < 7 && position[1] + dx > 0
-                if empty?(@board[(position[0] + dx, position[1] + dy)])
-                    unblocked_moves << [(position[0] + dx, position[1] + dy)]
+        loop do 
+            position = [(position[0] + dx, position[1] + dy)]
+            break if Board.valid_moves?(position) == false
+            if empty?(@board[position]
+                unblocked_moves << position
+            else
+                if @board[position].color != @color 
+                    unblocked_moves << position
                 end
+                break
             end
         end
+        return unblocked_moves
     end
-    
 end
+
+# if position[0] + dx < 7 && position[0] + dx > 0
+#     if position[1] + dy < 7 && position[1] + dx > 0
 
 module Stepable
 
