@@ -1,4 +1,5 @@
 require_relative "piece"
+require_relative "piece_require"
 require "byebug"
 
 class Board
@@ -9,7 +10,7 @@ class Board
         @chess_board.each.with_index do |row, idx1|
             if idx1 < 2 || idx1 > 5
                 row.each.with_index do |square, idx2|
-                    row[idx2] = Piece.new()
+                    row[idx2] = Queen.new('white', self, [idx1, idx2])
                 end
             end
         end
@@ -27,11 +28,13 @@ class Board
         self[start_pos] = nil
         render
     end
+    
     def valid_moves?(pos)
         return false if pos[0] > 7 || pos[1] > 7 
         return false if pos[0] < 0 || pos[1] < 0 
         true
     end
+    
     def render
         @chess_board.each do |rows|
             p rows

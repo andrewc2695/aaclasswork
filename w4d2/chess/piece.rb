@@ -1,3 +1,5 @@
+require "byebug"
+
 class Piece
     def initialize(color, board, pos)
         @color = color
@@ -6,14 +8,17 @@ class Piece
     end
     
     def to_s
-        return "p"
+        return symbol.to_s
     end
 
     def empty?(pos)
         #check if different color piece
         row, col = pos[0], pos[1]
+        debugger
         return false if @board[row][col] != nil
         true
+
+        @board[pos].empty?
     end
 
     def valid_moves

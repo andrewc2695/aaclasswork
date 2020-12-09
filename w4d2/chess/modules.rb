@@ -1,6 +1,8 @@
+require "byebug"
+
 module Slideable
     CARDINAL_DIRS = [[0,1],[1,0],[0,-1], [-1,0]]
-    INTERCARDINAL_DIRS = [[1,1],[1,-1],[-1,-1],[-1,1]
+    INTERCARDINAL_DIRS = [[1,1],[1,-1],[-1,-1],[-1,1]]
 
     def horizontal_dirs
         CARDINAL_DIRS
@@ -12,7 +14,9 @@ module Slideable
     
     def moves
         moves_array = []
-        grow_unblocked_moves_in_dir(dx, dy)
+        move_dirs.each do |dir|
+          moves_array += grow_unblocked_moves_in_dir(dir[0], dir[1])
+        end
     end
 
     private
@@ -28,10 +32,11 @@ module Slideable
         #piece_move_dirs should return array
         unblocked_moves = []
         position = @pos
+
         loop do 
-            position = [(position[0] + dx, position[1] + dy)]
-            break if Board.valid_moves?(position) == false
-            if empty?(@board[position]
+            position = [(position[0] + dx), (position[1] + dy)]
+            break if @board.valid_moves?(position) == false
+            if empty?(position)
                 unblocked_moves << position
             else
                 if @board[position].color != @color 
