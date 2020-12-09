@@ -14,9 +14,11 @@ module Slideable
     
     def moves
         moves_array = []
+        debugger
         move_dirs.each do |dir|
           moves_array += grow_unblocked_moves_in_dir(dir[0], dir[1])
         end
+        moves_array
     end
 
     private
@@ -53,5 +55,38 @@ end
 #     if position[1] + dy < 7 && position[1] + dx > 0
 
 module Stepable
+    CARDINAL_DIRS = [[0,1],[1,0],[0,-1], [-1,0]]
+    INTERCARDINAL_DIRS = [[1,1],[1,-1],[-1,-1],[-1,1]]
+    def moves
+        unblocked_moves = []
+        move_diffs.each do |dir|
+            position = @pos[0], @pos[1]
+            position = [(position[0] + dir[0]), (position[1] + dir[1])]
+            if @board.valid_moves?(position) == true
+                if empty?(position)
+                    unblocked_moves << position
+                else
+                    if @board[position].color != @color 
+                        unblocked_moves << position
+                    end
+                end
+            end
+        end
+        unblocked_moves
+    end
 
+    private
+    def move_diffs
+        # king_moves = CARDINAL_DIRS + INTERCARDINAL_DIRS
+        # knight_moves = [
+        #     [1, 2],
+        #     [2, 1],
+        #     [1,-2],
+        #     [2,-1],
+        #     [-1, 2],
+        #     [-2, 1],
+        #     [-1, -2],
+        #     [-2, -1]
+        # ]
+    end
 end
