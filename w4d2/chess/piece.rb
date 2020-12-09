@@ -4,6 +4,7 @@ class Piece
         @board = board
         @pos = pos
     end
+    
     def to_s
         return "p"
     end
