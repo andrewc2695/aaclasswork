@@ -24,6 +24,17 @@ module Slideable
   - final_position = current_position
 =end
     def grow_unblocked_moves_in_dir(dx, dy)
+        #piece_move_dirs should return array
+        unblocked_moves = []
+        position = @pos
+        
+        if position[0] + dx < 7 && position[0] + dx > 0
+            if position[1] + dy < 7 && position[1] + dx > 0
+                if empty?(@board[(position[0] + dx, position[1] + dy)])
+                    unblocked_moves << [(position[0] + dx, position[1] + dy)]
+                end
+            end
+        end
     end
     
 end
