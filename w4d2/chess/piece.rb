@@ -16,6 +16,7 @@ class Piece
         row, col = pos[0], pos[1]
         debugger
         return false if @board[row][col] != nil
+        #board.chess_board
         true
 
         @board[pos].empty?
