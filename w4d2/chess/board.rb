@@ -36,8 +36,20 @@ class Board
     end
     
     def render
+        pretty_arr = []
         @chess_board.each do |rows|
-            p rows
+            pretty_row = []
+            rows.each do |square|
+                if square != nil
+                    pretty_row << square.to_s
+                else
+                    pretty_row << nil
+                end
+            end
+            pretty_arr << pretty_row
+        end
+        pretty_arr.each do |p_rows|
+            p p_rows
         end
     end
 
