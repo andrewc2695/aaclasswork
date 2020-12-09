@@ -1,4 +1,5 @@
 require_relative "piece"
+require "byebug"
 
 class Board
     attr_reader :chess_board
@@ -16,14 +17,15 @@ class Board
     end
         #move_piece([0,4], [2,4])
     def move_piece(start_pos, end_pos)
-        current_piece = @board[start_pos]
-
+        # debugger
+        current_piece = self.[](start_pos)
+        s = ""
         raise StandardError.new "Start position empty" if !current_piece
         raise "Out of bounds" if end_pos[0] > 7 || end_pos[1] > 7 
         raise "Out of bounds" if end_pos[0] < 0 || end_pos[1] < 0 
 
-        @chess_board[end_pos] = current_piece
-        @chess_board[start_pos] = nil
+        self[end_pos] = current_piece
+        self[start_pos] = nil
         render
     end
 
@@ -34,10 +36,12 @@ class Board
     end
 
     def [](pos)
-        @chess_board[pos[0], pos[1]]
+        row, col = pos[0], pos[1]
+        @chess_board[row][col]
     end
 
     def []=(pos, piece)
-        @chess_board[pos[0], pos[1]] = piece
+        row, col = pos[0], pos[1]
+        @chess_board[row][col] = piece
     end
 end
