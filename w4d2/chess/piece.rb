@@ -17,6 +17,7 @@ class Piece
         #do later
         #array of all possible moves uses empty? to check if squares are empty
         #if square isnt empty what color is the piece?
+        #check move directions from piece class
     end
 
     def pos=(val)
