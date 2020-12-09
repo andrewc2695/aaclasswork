@@ -15,6 +15,8 @@ class Piece
 
     def valid_moves
         #do later
+        #array of all possible moves uses empty? to check if squares are empty
+        #if square isnt empty what color is the piece?
     end
 
     def pos=(val)
@@ -22,7 +24,11 @@ class Piece
     end
 
     def symbol
+        #color
+    end
 
+    def move_into_checl
+        #use vaild if opponets king location in valid moves array
     end
 
 end
