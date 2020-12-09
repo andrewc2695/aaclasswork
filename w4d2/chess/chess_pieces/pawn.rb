@@ -42,6 +42,13 @@ class Pawn < Piece
     end
 
     def side_attacks
-        sides = [[1,1], [1,-1]]
+        move_1 = @pos[0] + 1, @pos[1] + forward_dir
+        move_2 = @pos[0] -1, @pos[1] + forward_dir
+        attk_moves = [move_1, move_2]
+        attk_moves.each do |diag_pos|
+            diag_spot = 
+            next if !@board.valid_moves?(diag_pos) || if empty?(diag_pos)
+            opponents_piece = diag_pos
+        end
     end
 end
