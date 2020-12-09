@@ -9,8 +9,10 @@ class Piece
         return "p"
     end
 
-    def empty?
-        return false
+    def empty?(pos)
+        row, col = pos[0], pos[1]
+        return false if @board[row][col] != nil
+        true
     end
 
     def valid_moves
