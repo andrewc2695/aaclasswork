@@ -6,7 +6,7 @@ class Board
     attr_reader :chess_board
     
     def initialize(chess_board)
-        @chess_board = Array.new(8){Array.new(8, nil)}
+        @chess_board = Array.new(8){Array.new(8, NullPiece.Instance)}
         @chess_board.each.with_index do |row, idx1|
             if idx1 < 2 || idx1 > 5
                 row.each.with_index do |square, idx2|
@@ -16,9 +16,27 @@ class Board
         end
         render
     end
-        #move_piece([0,4], [2,4])
+
+    def starting_board
+        starting_pawns
+    end
+
+    def starting_pawns
+        @chess_board.each_with_index do |row, idx1|
+            if idx1 == 1
+                row.each_with_index {|tile, idx2| row[idx2] = Pawn.new('white', self, [idx1, idx2])}
+            elsif idx1 == 6
+                row.each_with_index {|tile, idx2| row[idx2] = Pawn.new('black', self, [idx1, idx2])}
+            end
+        end
+    end
+
+    def starting_others
+        @chess_board
+    end
+
     def move_piece(start_pos, end_pos)
-        # debugger
+
         current_piece = self.[](start_pos)
         
         raise StandardError.new "Start position empty" if !current_piece
