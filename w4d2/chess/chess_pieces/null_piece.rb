@@ -1,9 +1,13 @@
+require "singleton"
+require_relative "../modules"
+require_relative "../piece"
+
 class NullPiece < Piece
     include Singleton
     attr_reader :symbol
 
     def initialize
-        @symbol = " "
+        @symbol = ' '
         @color = nil 
     end
 

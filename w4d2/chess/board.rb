@@ -6,19 +6,14 @@ class Board
     attr_reader :chess_board
     
     def initialize(chess_board)
-        @chess_board = Array.new(8){Array.new(8, NullPiece.Instance)}
-        @chess_board.each.with_index do |row, idx1|
-            if idx1 < 2 || idx1 > 5
-                row.each.with_index do |square, idx2|
-                    row[idx2] = Pawn.new('white', self, [idx1, idx2])
-                end
-            end
-        end
+        @chess_board = Array.new(8){Array.new(8, NullPiece.instance)}
+        starting_board
         render
     end
 
     def starting_board
         starting_pawns
+        starting_others
     end
 
     def starting_pawns
@@ -32,11 +27,40 @@ class Board
     end
 
     def starting_others
-        @chess_board
+        @chess_board.each_with_index do |row, idx1|
+            if idx1 == 0
+                row.each_with_index do |tile, idx2|
+                    if idx2 == 0 || idx2 == 7
+                        row[idx2] = Rook.new('white', self, [idx1, idx2])
+                    elsif idx2 == 1 || idx2 == 6
+                        row[idx2] = Knight.new('white', self, [idx1, idx2])
+                    elsif idx2 == 2 || idx2 == 5
+                        row[idx2] = Bishop.new('white', self, [idx1, idx2])
+                    elsif idx2 == 3
+                      row[idx2] = King.new('white', self, [idx1, idx2])
+                    else
+                      row[idx2] = Queen.new('white', self, [idx1, idx2])
+                    end
+                end
+            elsif idx1 == 7
+                row.each_with_index do |tile, idx2|
+                    if idx2 == 0 || idx2 == 7
+                        row[idx2] = Rook.new('black', self, [idx1, idx2])
+                    elsif idx2 == 1 || idx2 == 6
+                        row[idx2] = Knight.new('black', self, [idx1, idx2])
+                    elsif idx2 == 2 || idx2 == 5
+                        row[idx2] = Bishop.new('black', self, [idx1, idx2])
+                    elsif idx2 == 3
+                      row[idx2] = King.new('black', self, [idx1, idx2])
+                    else
+                      row[idx2] = Queen.new('black', self, [idx1, idx2])
+                    end
+                end
+            end
+        end
     end
 
     def move_piece(start_pos, end_pos)
-
         current_piece = self.[](start_pos)
         
         raise StandardError.new "Start position empty" if !current_piece
