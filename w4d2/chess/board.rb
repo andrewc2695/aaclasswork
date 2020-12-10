@@ -10,7 +10,7 @@ class Board
         @chess_board.each.with_index do |row, idx1|
             if idx1 < 2 || idx1 > 5
                 row.each.with_index do |square, idx2|
-                    row[idx2] = Knight.new('white', self, [idx1, idx2])
+                    row[idx2] = Pawn.new('white', self, [idx1, idx2])
                 end
             end
         end

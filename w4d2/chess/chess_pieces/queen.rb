@@ -3,7 +3,7 @@ require_relative "../piece"
 class Queen < Piece
     include Slideable
     def symbol
-        return :Q
+        return :♕
     end
 
     private

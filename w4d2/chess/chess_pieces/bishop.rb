@@ -3,7 +3,7 @@ require_relative "../modules"
 class Bishop < Piece
     include Slideable
     def symbol
-        return :B
+        return :♗
     end
 
     private

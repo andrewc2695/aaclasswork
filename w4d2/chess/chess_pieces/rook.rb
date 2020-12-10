@@ -3,7 +3,7 @@ require_relative "../modules"
 class Rook < Piece
     include Slideable
     def symbol
-        return :R
+        return :♖
     end
 
     private
