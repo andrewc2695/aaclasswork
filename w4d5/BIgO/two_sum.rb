@@ -58,7 +58,19 @@ end
 
 #O(n)
 
-arr = [1, 0, 7, 5]
-p hash_two_sum?(arr, 6) 
-p hash_two_sum?(arr, 10)
 
+
+def hash_two_sum_2?(array, target)
+    hash = Hash.new(0)
+
+    array.each do |el|
+        return true if hash[target - el] == true
+        hash[el] = true
+    end
+
+    false
+end
+
+arr = [1, 0, 7, 5]
+p hash_two_sum_2?(arr, 6) 
+p hash_two_sum_2?(arr, 10)
