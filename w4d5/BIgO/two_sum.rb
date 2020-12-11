@@ -30,7 +30,35 @@ def okay_two_sum?(array, target)
     false
 end
 
+# arr = [1, 0, 7, 5]
+# p okay_two_sum?(arr, 6) 
+# p okay_two_sum?(arr, 10)
+
+def hash_two_sum?(arr, target)
+    hash = Hash.new(0)
+
+    arr.each do |el|
+        hash[el] += 1
+    end
+    arr.each do |n| 
+        puts hash[target-n]
+
+        if hash[target-n] > 0
+            puts hash
+            if target - n == n && hash[n] != 2
+                next
+            else
+                puts n
+                return true
+            end
+        end
+    end
+    false
+end
+
+#O(n)
+
 arr = [1, 0, 7, 5]
-p okay_two_sum?(arr, 6) 
-p okay_two_sum?(arr, 10)
+p hash_two_sum?(arr, 6) 
+p hash_two_sum?(arr, 10)
 
