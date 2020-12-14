@@ -18,7 +18,7 @@ class MaxIntSet
   end
 
   private
-
+ 
   def out_of_bounds?(num)
     min = 0 
     max = self.store.length
@@ -40,12 +40,18 @@ class IntSet
   end
 
   def insert(num)
+    bucket_num = num % @store.length
+    @store[bucket_num] << num
   end
 
   def remove(num)
+    bucket_num = num % @store.length
+    @store[bucket_num].delete(num)
   end
 
   def include?(num)
+    bucket_num = num % @store.length
+    @store[bucket_num].include?(num)
   end
 
   private
@@ -68,12 +74,25 @@ class ResizingIntSet
   end
 
   def insert(num)
+    if !include?(num)
+      bucket_num = num % @store.length
+      @store[bucket_num] << num
+      @count += 1
+    end
+    #if count > store.length, we will resize.
   end
 
   def remove(num)
+    if include?(num)
+      bucket_num = num % @store.length
+      @store[bucket_num].delete(num)
+      @count -= 1
+    end
   end
 
   def include?(num)
+    bucket_num = num % @store.length
+    @store[bucket_num].include?(num)
   end
 
   private
@@ -87,5 +106,9 @@ class ResizingIntSet
   end
 
   def resize!
+    new_buckets = @store.length * 2
+    until @store.length = new_buckets
+      @store << Array.new
+    end
   end
 end
