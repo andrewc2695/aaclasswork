@@ -1,18 +1,34 @@
 class HashSet
   attr_reader :count
-
+ 
   def initialize(num_buckets = 8)
     @store = Array.new(num_buckets) { Array.new }
     @count = 0
   end
 
   def insert(key)
+    if !include?(key)
+      hashed = key.hash
+      bucket_num = hashed % @store.length
+      @store[bucket_num].push(hashed)
+      @count += 1
+    end
+    resize! if @count >= @store.length
   end
 
   def include?(key)
+    hashed = key.hash
+    bucket_num = hashed % @store.length
+    @store[bucket_num].include?(hashed)
   end
 
   def remove(key)
+    if include?(key)
+      hashed = key.hash
+      bucket_num = hashed % @store.length
+      @store[bucket_num].delete(hashed)
+      @count -= 1
+    end
   end
 
   private
@@ -26,5 +42,12 @@ class HashSet
   end
 
   def resize!
+    new_buckets = num_buckets * 2
+    until num_buckets == new_buckets
+      @store << Array.new
+    end
+    @store.each_with_index do |bucket, idx|
+      bucket.each
+    end
   end
 end

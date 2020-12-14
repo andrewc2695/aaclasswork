@@ -40,15 +40,27 @@ class Hash
     num_str = ""
     hash_arr.each do |ele|
       # debugger
-      if ele.class == Array
+      # if ele.class == Array
+      #   num_str += to_integer(ele)
+      # elsif ele.class == Integer
+      #   num_str += ele.to_s
+      # elsif ele.class == String
+      #   num_str += to_integer(ele)
+      # elsif ele.class == Symbol
+      #   num_str += to_integer(ele.to_s)
+      # elsif ele.class == Hash
+      #   num_str += ele.hash
+      # else
+      case ele # don't do ele.class
+      when Array
         num_str += to_integer(ele)
-      elsif ele.class == Integer
+      when Integer
         num_str += ele.to_s
-      elsif ele.class == String
+      when String
         num_str += to_integer(ele)
-      elsif ele.class == Symbol
+      when Symbol
         num_str += to_integer(ele.to_s)
-      elsif ele.class == Hash
+      when Hash
         num_str += ele.hash
       else
         puts "this failed"
