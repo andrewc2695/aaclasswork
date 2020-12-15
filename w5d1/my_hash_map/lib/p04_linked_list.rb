@@ -69,9 +69,13 @@ class LinkedList
 
   def each
     current_node = @head
-    return nil if 
-    #until current node.next == nil
-
+    #return nil if 
+    yielded = []
+    until current_node.next.next == nil
+      current_node = current_node.next
+      yielded << current_node.val
+    end
+  
   end
 
   # uncomment when you have `each` working and `Enumerable` included
