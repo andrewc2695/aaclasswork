@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Node
   attr_reader :key
   attr_accessor :val, :next, :prev
@@ -18,7 +20,7 @@ class Node
     # and removes self from list.
   end
 end
-
+ 
 class LinkedList
   include Enumerable
   def initialize
@@ -34,9 +36,11 @@ class LinkedList
   end
 
   def first
+    @head.next
   end
 
   def last
+    @tail.prev
   end
 
   def empty?
@@ -51,7 +55,10 @@ class LinkedList
 
   def append(key, val)
     new_node = Node.new(key, val)
+    new_node.prev = @tail.prev.next
+    @tail.prev.next = new_node
     @tail.prev = new_node
+    new_node.next = @tail
   end
 
   def update(key, val)
@@ -61,6 +68,10 @@ class LinkedList
   end
 
   def each
+    current_node = @head
+    return nil if 
+    #until current node.next == nil
+
   end
 
   # uncomment when you have `each` working and `Enumerable` included
