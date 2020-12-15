@@ -47,7 +47,15 @@ class HashSet
       @store << Array.new
     end
     @store.each_with_index do |bucket, idx|
-      bucket.each
+      bucket.each do |ele|
+        @store[idx].delete(ele)
+        private_insert(ele)
+      end
     end
+  end
+
+  def private_insert(element)
+    bucket_num = element % @store.length
+    @store[bucket_num].push(element)
   end
 end
