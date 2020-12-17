@@ -1,11 +1,12 @@
 class Enrollment < ApplicationRecord
-    has_many :courses,
+    belongs_to :course,
         primary_key: :id,
-        foreign_key: :prereq_id,
+        foreign_key: :course_id,
         class_name: :Course
 
-    hash_many :students,
+    belongs_to :user,
         primary_key: :id,
         foreign_key: :student_id,
         class_name: :User
+
 end
