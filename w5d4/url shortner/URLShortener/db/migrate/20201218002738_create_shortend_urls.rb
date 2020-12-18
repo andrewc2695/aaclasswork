@@ -7,6 +7,6 @@ class CreateShortendUrls < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :short_url, :long_url, unique: true
+    add_index :shortend_url, :short_url, unique: true
   end
 end
