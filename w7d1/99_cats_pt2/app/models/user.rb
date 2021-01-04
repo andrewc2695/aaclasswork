@@ -3,6 +3,12 @@ class User < ApplicationRecord
     validates :session_token, presence: true, uniqueness: true
     after_initialize :ensure_session_token
 
+    attr_reader :password
+
+    has_many :cats,
+    foreign_key: :user_id,
+    class_name: :Cat
+
     def reset_session_token!
         self.session_token = SecureRandom::urlsafe_base64
         self.save!
@@ -22,7 +28,7 @@ class User < ApplicationRecord
         BCrypt::Password.new(self.password_digest).is_password?(pw)
     end
 
-    def find_by_credentials(username, pw)
+    def self.find_by_credentials(username, pw)
         user = User.find_by(username: username)
         if user && user.is_password?(pw)
             user
@@ -30,4 +36,6 @@ class User < ApplicationRecord
             nil
         end
     end
+
+
 end
