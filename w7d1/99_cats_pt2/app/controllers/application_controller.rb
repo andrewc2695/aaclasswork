@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
         redirect_to new_session_url unless logged_in?
     end
 
+    def users_cats
+        # debugger
+        if current_user.cats.find_by(id: params[:id])
+            # redirect_to cat_url(params[:id]) 
+        else
+            redirect_to cats_url
+        end
+    end
+
     def login(user)
         session[:session_token] = user.reset_session_token!
     end 
