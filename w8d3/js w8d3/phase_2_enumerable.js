@@ -18,23 +18,19 @@ arr = [1,2,3];
 //     return 2 * x;
 // }));
 
-Array.prototype.myReduceNoInitial = function(callback) {
-    var accum;
+Array.prototype.myReduce = function(callback, intialValue) {
+    var accum = intialValue;
     this.myEach(function(ele) {
-        accum = accum ? callback(accum, ele) : ele;
+        accum = accum !== undefined ? callback(accum, ele) : ele;
     });
     return accum;
 }
 
-Array.prototype.myReduce = function(callback, initialValue) {
-    // var accum;
-    // this.myEach(function(ele) {
-    //     accum = initialValue ? callback()
-    // });
-    // return accum;
-    // if (initialValue === undefined) {
-    //     initialValue = this[0];
-    // } else {
+arr = [0, -1, 2, -3, 4, -5, 6, -7]
+console.log(arr.myReduce(function(a, b){
+    return a + b;
+}));
 
-    // }
-}
+console.log(arr.myReduce(function (a, b) {
+    return a * b;
+}));
