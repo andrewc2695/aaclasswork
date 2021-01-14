@@ -26,11 +26,11 @@ Array.prototype.myReduce = function(callback, intialValue) {
     return accum;
 }
 
-arr = [0, -1, 2, -3, 4, -5, 6, -7]
-console.log(arr.myReduce(function(a, b){
-    return a + b;
-}));
+// arr = [0, -1, 2, -3, 4, -5, 6, -7]
+// console.log(arr.myReduce(function(a, b){
+//     return a + b;
+// }));
 
-console.log(arr.myReduce(function (a, b) {
-    return a * b;
-}));
+// console.log(arr.myReduce(function (a, b) {
+//     return a * b;
+// }));
