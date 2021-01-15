@@ -21,8 +21,39 @@ class Clock {
         
         // 1. Increment the time by one second.
         // 2. Call printTime.
+
+        // console.log(setInterval(this.printTime(), 1000));
+
+        setInterval(incrementSecond(), 1000) 
+           
+        
+    }
+
+    incrementSecond() {
+        console.log(this.printTime())
+        this.seconds += 1;
+        if (this.seconds === 60) {
+            this.seconds = 0;
+            this.incrementMinute;
+        }
+    }
+
+    incrementMinute() {
+        this.minutes += 1;
+        if (this.minutes === 60) {
+            this.minutes = 0;
+            this.incrementHour
+        }
+    }
+
+    incrementHour() {
+        this.hours += 1;
+        if (this.hours === 24) {
+            this.hours = 0;
+        }
     }
 }
 
 const clock = new Clock();
-clock.printTime();
+// clock.printTime();
+clock._tick()
