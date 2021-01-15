@@ -8,29 +8,35 @@ class Clock {
         // 2. Store the hours, minutes, and seconds.
         // 3. Call printTime.
         // 4. Schedule the tick at 1 second intervals.
+        this.printTime;
+        setInterval(this._tick.bind(this), 1000)
+
     }
 
     printTime() {
-        let formattedTime = [this.hours, this.minutes, this.seconds].join(":")
+        const formattedTime = [this.hours, this.minutes, this.seconds].join(":")
         console.log(formattedTime)
         // Format the time in HH:MM:SS
         // Use console.log to print it.
     }
 
     _tick() {
-        
+
         // 1. Increment the time by one second.
         // 2. Call printTime.
 
         // console.log(setInterval(this.printTime(), 1000));
 
-        setInterval(incrementSecond(), 1000) 
-           
+        // setInterval(incrementSecond(), 1000) 
+     
+        this.incrementSecond()
+        this.printTime()
         
     }
 
+
     incrementSecond() {
-        console.log(this.printTime())
+        console.log(this.printTime)
         this.seconds += 1;
         if (this.seconds === 60) {
             this.seconds = 0;
