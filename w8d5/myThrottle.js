@@ -13,10 +13,5 @@ Function.prototype.myThrottle = function(time) {
     }
 }
 
-class Neuron {
-    fire() {
-      console.log("Firing!");
-    }
-  }
 
   
