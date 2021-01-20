@@ -24,12 +24,15 @@ class View {
       return
     }
 
-    if (currentPlayer === "x") {
-      $square.addClass("x");
-    } else {
-      $square.addClass("o");
+    $square.addClass(currentPlayer);
+    if(this.game.isOver()){
+      const winner = this.game.winner();
+      if(winner){
+        alert(`you win, ${winner}`)
+      }else{
+        alert("It's a tie!")
+      }
     }
-
   }
 
   setupBoard() {

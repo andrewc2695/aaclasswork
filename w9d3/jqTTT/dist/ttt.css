@@ -25,15 +25,22 @@ li:hover {
 .x:after {
     content: "x";
     display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
-    align-items: center;
+    /* flex-direction: column; */
+    justify-content: center;
+    /* align-items: center; */
+    align-self: center;
+    line-height: 90px;
+    font-size: 60px;
+
 }
 
 .o:after {
     content: "o";
     display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
-    align-items: center;
+    /* flex-direction: column; */
+    justify-content: center;
+    /* align-items: center; */
+    align-self: center;
+    line-height: 90px;
+    font-size: 60px;
 }
