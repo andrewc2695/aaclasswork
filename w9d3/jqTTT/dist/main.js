@@ -43,9 +43,9 @@ eval("\nconst MoveError = function (msg) { this.msg = msg; };\n\n// MoveError re
 /*!*************************!*\
   !*** ./src/ttt-view.js ***!
   \*************************/
-/***/ (() => {
+/***/ ((module) => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (10:4)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| \\n|   bindEvents() {\\n>     .on(\\\"click\\\", \\\"li\\\", ( e => {\\n|       this.game.playMove();\\n|     }))\");\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
+eval("class View {\n  constructor(game, $el) {\n    this.$el = $el;\n    this.game = game;\n    this.setupBoard();\n\n  }\n\n  bindEvents() {\n    this.$el.on(\"click\", \"li\", ( e => {\n      const $square = $(e.currentTarget);\n      this.makeMove($square);\n    }))\n  }\n\n  makeMove($square) {\n    const pos = $square.data('pos')\n    const currentPlayer = this.game.currentPlayer;\n    try{\n      this.game.playMove(pos);\n    }catch(err){\n      alert(err.message);\n      return\n    }\n\n  }\n\n  setupBoard() {\n    const $ul = $('<ul>');\n    for(let i = 0; i < 3; i++){\n      for(let j = 0; j < 3; j++){\n        let $li = $('<li>');\n        $li.data(\"pos\", [i, j]);\n        \n        $ul.append($li);\n      }\n    }\n\n    this.$el.append($ul);\n  }\n\n}\n\n\n\nmodule.exports = View;\n\n\n//# sourceURL=webpack:///./src/ttt-view.js?");
 
 /***/ })
 
