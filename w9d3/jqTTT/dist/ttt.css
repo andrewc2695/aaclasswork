@@ -16,3 +16,24 @@ ul {
 li:hover {
     background: yellow;
 }
+
+.x, .o {
+    background: white;
+
+}
+
+.x:after {
+    content: "x";
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.o:after {
+    content: "o";
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}

@@ -3,7 +3,7 @@ class View {
     this.$el = $el;
     this.game = game;
     this.setupBoard();
-
+    this.bindEvents();
   }
 
   bindEvents() {
@@ -14,13 +14,20 @@ class View {
   }
 
   makeMove($square) {
+    // debugger;
     const pos = $square.data('pos')
     const currentPlayer = this.game.currentPlayer;
     try{
       this.game.playMove(pos);
     }catch(err){
-      alert(err.message);
+      alert("Invalid move");
       return
+    }
+
+    if (currentPlayer === "x") {
+      $square.addClass("x");
+    } else {
+      $square.addClass("o");
     }
 
   }
@@ -31,7 +38,7 @@ class View {
       for(let j = 0; j < 3; j++){
         let $li = $('<li>');
         $li.data("pos", [i, j]);
-        
+
         $ul.append($li);
       }
     }
