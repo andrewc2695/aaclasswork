@@ -2,7 +2,7 @@ const Util = {
     inherits(ChildClass, ParentClass) {
         ChildClass.prototype = Object.create(ParentClass.prototype);
         ChildClass.prototype.constructor = ChildClass;
-    }
+    },
 
     randomVec(length) {
         const deg = 2 * Math.PI * Math.random();
