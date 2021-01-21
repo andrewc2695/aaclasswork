@@ -2,6 +2,7 @@ console.log("Webpack is working!");
 
 const MovingObject = require("./moving_object.js"); 
 const Asteroid = require("./asteroid.js");
+const Game = require("./game.js");
 const Util = require("./util.js");
 window.MovingObject = MovingObject;
 
