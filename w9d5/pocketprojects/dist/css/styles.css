@@ -57,14 +57,19 @@ p, h3, .dog-link a {
   transform: translateX(0%) scale(1);
 }
 
-.drop-down-dog-list{
+.drop-down-dog-list {
   visibility: hidden;
 }
 
-.show{
+.show {
   visibility: visible;
 }
 
 .dog-link {
   margin: 15px;
+  /* width: 0px; */
 }
+
+/* li.dog-link:hover {
+  background-color: black;
+} */
