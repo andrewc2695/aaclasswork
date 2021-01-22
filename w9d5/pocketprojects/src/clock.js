@@ -1,6 +1,6 @@
 import { htmlGenerator } from "./warmup";
 
-class Clock {
+export default class Clock {
     constructor($ele){
         this.clock = $ele;
         this.currentTime = new Date();
@@ -41,5 +41,3 @@ class Clock {
 
 const clockElement = document.getElementById("clock");
 const clock = new Clock(clockElement);
-
-module.exports = Clock;

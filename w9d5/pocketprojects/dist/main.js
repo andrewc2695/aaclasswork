@@ -7,16 +7,26 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/clock.js":
 /*!**********************!*\
   !*** ./src/clock.js ***!
   \**********************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* module decorator */ module = __webpack_require__.hmd(module);\n\n\nclass Clock {\n    constructor($ele){\n        this.clock = $ele;\n        this.currentTime = new Date();\n        this.hour = this.currentTime.getHours();\n        this.minute = this.currentTime.getMinutes();\n        this.second = this.currentTime.getSeconds();\n        setInterval(this._tick.bind(this), 1000);\n    }\n\n    _tick(){\n        this.second++;\n        if(this.second === 60){\n            this.second = 0;\n            this.minute++\n        }\n        if(this.minute === 60){\n            this.minute = 0;\n            this.hour++;\n        }\n        if(this.hour === 24){\n            this.hour = 0;\n        }\n        this.render();\n    };\n\n    printTime(){\n        return `${this.hour}:${this.minute}:${this.second}`;\n    }\n\n    render(){\n        (0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(this.printTime(), this.clock)\n    }\n\n\n\n\n}\n\nconst clockElement = document.getElementById(\"clock\");\nconst clock = new Clock(clockElement);\n\nmodule.exports = Clock;\n\n//# sourceURL=webpack:///./src/clock.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => /* binding */ Clock\n/* harmony export */ });\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n\n\nclass Clock {\n    constructor($ele){\n        this.clock = $ele;\n        this.currentTime = new Date();\n        this.hour = this.currentTime.getHours();\n        this.minute = this.currentTime.getMinutes();\n        this.second = this.currentTime.getSeconds();\n        setInterval(this._tick.bind(this), 1000);\n    }\n\n    _tick(){\n        this.second++;\n        if(this.second === 60){\n            this.second = 0;\n            this.minute++\n        }\n        if(this.minute === 60){\n            this.minute = 0;\n            this.hour++;\n        }\n        if(this.hour === 24){\n            this.hour = 0;\n        }\n        this.render();\n    };\n\n    printTime(){\n        return `${this.hour}:${this.minute}:${this.second}`;\n    }\n\n    render(){\n        (0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(this.printTime(), this.clock)\n    }\n\n\n\n\n}\n\nconst clockElement = document.getElementById(\"clock\");\nconst clock = new Clock(clockElement);\n\n//# sourceURL=webpack://pocketprojects/./src/clock.js?");
+
+/***/ }),
+
+/***/ "./src/drop_down.js":
+/*!**************************!*\
+  !*** ./src/drop_down.js ***!
+  \**************************/
+/***/ (() => {
+
+eval("\nconst dogs = {\n  \"Corgi\": \"https://www.akc.org/dog-breeds/cardigan-welsh-corgi/\",\n  \"Australian Shepherd\": \"https://www.akc.org/dog-breeds/australian-shepherd/\",\n  \"Affenpinscher\": \"https://www.akc.org/dog-breeds/affenpinscher/\",\n  \"American Staffordshire Terrier\": \"https://www.akc.org/dog-breeds/american-staffordshire-terrier/\",\n  \"Tosa\": \"https://www.akc.org/dog-breeds/tosa/\",\n  \"Labrador Retriever\": \"https://www.akc.org/dog-breeds/labrador-retriever/\",\n  \"French Bulldog\": \"https://www.akc.org/dog-breeds/french-bulldog/\" \n};\n\nfunction dogLinkCreator() {\n  let dogLinks = [];\n  let keys = Object.keys(dogs);\n  let values = Object.values(dogs);\n  for(let i = 0; i < keys.length; i++) {\n    let a = document.createElement(\"a\");\n    a.innerHTML = keys[i];\n    a.href = values[i];\n    let li = document.createElement(\"li\");\n    li.classList.add(\"dog-link\");\n    li.append(a);\n    dogLinks.push(li);\n  }\n  return dogLinks;\n}\n\nfunction attachDogLinks() {\n  let dogLinks = dogLinkCreator();\n  dogLinks.forEach((dog) => {\n    let dropdown = document.querySelector(\".drop-down-dog-list\")\n    dropdown.append(dog);\n  });\n}\n\nattachDogLinks();\n\n//# sourceURL=webpack://pocketprojects/./src/drop_down.js?");
 
 /***/ }),
 
@@ -26,7 +36,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _war
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n\n\n\nlet h2 = document.getElementById(\"party\")\n;(0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(\"i <3 vanilla DOM manipulation\", h2)\n\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n\n\nlet dropdown = __webpack_require__(/*! ./drop_down */ \"./src/drop_down.js\");\n\nlet h2 = document.getElementById(\"party\")\n;(0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(\"i <3 vanilla DOM manipulation\", h2)\n\n\n//# sourceURL=webpack://pocketprojects/./src/index.js?");
 
 /***/ }),
 
@@ -36,7 +47,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _war
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"htmlGenerator\": () => /* binding */ htmlGenerator\n/* harmony export */ });\n\nconst partyHeader = document.getElementById('party');\n\nconst htmlGenerator = (string, htmlElement) => {\n    let p = document.createElement(\"p\");\n    p.innerText = string;\n    htmlElement.append(p);\n};\n\nhtmlGenerator('Party Time.', partyHeader);\n\n//# sourceURL=webpack:///./src/warmup.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"htmlGenerator\": () => /* binding */ htmlGenerator\n/* harmony export */ });\n\nconst partyHeader = document.getElementById('party');\n\nconst htmlGenerator = (string, htmlElement) => {\n    if (htmlElement.children) {\n        Array.from(htmlElement.children).forEach((child) => {\n            htmlElement.removeChild(child)\n        })\n    }\n    let p = document.createElement(\"p\");\n    p.innerText = string;\n    htmlElement.append(p);\n};\n\nhtmlGenerator('Party Time.', partyHeader);\n\n//# sourceURL=webpack://pocketprojects/./src/warmup.js?");
 
 /***/ })
 
@@ -53,16 +65,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -78,21 +87,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/harmony module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.hmd = (module) => {
-/******/ 			module = Object.create(module);
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'exports', {
-/******/ 				enumerable: true,
-/******/ 				set: () => {
-/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
-/******/ 				}
-/******/ 			});
-/******/ 			return module;
 /******/ 		};
 /******/ 	})();
 /******/ 	
