@@ -33,4 +33,18 @@ function attachDogLinks() {
   });
 }
 
+function handleEnter(){
+  let dropdown = document.querySelector(".drop-down-dog-list");
+  dropdown.classList.add("show");
+}
+
+function handleLeave(){
+  let dropdown = document.querySelector(".drop-down-dog-list");
+  dropdown.classList.remove("show");
+
+}
+
 attachDogLinks();
+let dropDownArea = document.querySelector(".drop-down-dog-nav");
+dropDownArea.addEventListener("mouseenter", handleEnter)
+dropDownArea.addEventListener("mouseleave", handleLeave)

@@ -12,6 +12,11 @@ h1 {
   font-weight: 200;
 }
 
+p, h3, .dog-link a {
+  color: #F0F2EF;
+  font-family: 'helvetica neue';
+}
+
 .header {
   display: flex;
   justify-content: space-around;
@@ -50,4 +55,16 @@ h1 {
 .slide.active {
   opacity: 1;
   transform: translateX(0%) scale(1);
+}
+
+.drop-down-dog-list{
+  visibility: hidden;
+}
+
+.show{
+  visibility: visible;
+}
+
+.dog-link {
+  margin: 15px;
 }
