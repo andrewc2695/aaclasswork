@@ -37,7 +37,17 @@ eval("\nconst dogs = {\n  \"Corgi\": \"https://www.akc.org/dog-breeds/cardigan-w
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n\n\nlet dropdown = __webpack_require__(/*! ./drop_down */ \"./src/drop_down.js\");\n\nlet h2 = document.getElementById(\"party\")\n;(0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(\"i <3 vanilla DOM manipulation\", h2)\n\n\n//# sourceURL=webpack://pocketprojects/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n\n\nlet dropdown = __webpack_require__(/*! ./drop_down */ \"./src/drop_down.js\");\nlet todo = __webpack_require__(/*! ./todo_list */ \"./src/todo_list.js\")\n\nlet h2 = document.getElementById(\"party\")\n;(0,_warmup__WEBPACK_IMPORTED_MODULE_0__.htmlGenerator)(\"i <3 vanilla DOM manipulation\", h2)\n\n\n//# sourceURL=webpack://pocketprojects/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/todo_list.js":
+/*!**************************!*\
+  !*** ./src/todo_list.js ***!
+  \**************************/
+/***/ (() => {
+
+eval("const todoList = JSON.parse(localStorage.getItem(\"todo\")) || [];\nconst ulTodos = document.querySelector(\".todos\")\nconst todoForm = document.querySelector(\".add-todo-form\")\n\nfunction addTodo(e) {\n    e.preventDefault();\n    console.log(\"add todo\")\n    let todo = document.querySelector(\"input[name=add-todo]\")\n    let todoObj = {\n        value: todo.value,\n        done: false\n    }\n    todoList.push(todoObj);\n    localStorage.setItem(\"todo\", JSON.stringify(todoList));\n    todo.value = \"\";\n    populateList();\n}\n\nfunction populateList() {\n    todoList.forEach((item) => {\n        let li = document.createElement(\"li\");\n        let label = document.createElement(\"label\");\n        let checkbox = document.createElement(\"input\");\n        label.innerText = item.value;\n        checkbox.setAttribute(\"type\", \"checkbox\");\n        li.setAttribute(\"data-done\", item.done)\n        label.append(checkbox);\n        li.append(label);\n        ulTodos.append(li);\n    });\n}\n\ntodoForm.addEventListener(\"submit\", (e) => addTodo(e))\nulTodos.addEventListener(\"click\", function(e){\n    let li = e.target;\n   let done = li.getAttribute(\"data-done\");\n   li.setAttribute(\"data-done\", !done);\n})\n\n//# sourceURL=webpack://pocketprojects/./src/todo_list.js?");
 
 /***/ }),
 
