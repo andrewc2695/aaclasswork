@@ -4,11 +4,12 @@ window.$l = (arg) => {
 
     if(arg instanceof HTMLElement) {
         const domCollection = new DOMNodeCollection([arg]);
-    } else if(arg instanceof String) { 
+        return domCollection;
+    } else{ 
         const nodeList = document.querySelectorAll(arg);
         const nodesArray = [...nodeList];
         const domCollection = new DOMNodeCollection(nodesArray);
+        return domCollection;
     }
-    return domCollection;
 }
 

@@ -4,7 +4,7 @@ class DOMNodeCollection {
     }
 
     html (string) {
-        if(!string) {
+        if(string === undefined) {
             return this.arrayHtml[0].innerHTML;
         } else {
             this.arrayHtml.forEach(node => {
@@ -12,6 +12,26 @@ class DOMNodeCollection {
             });
         }
     }
+
+    empty(){
+        this.html("");
+    }
+
+    append(){
+       const argsArray =  Array.from(arguments);
+       argsArray.forEach(argEle => {
+          this.arrayHtml.forEach(htmlEle => {
+              if(typeof argEle === 'string'){
+                  htmlEle.innerHTML += argEle;
+              }else{
+                  htmlEle.appendChild(argEle);
+              }
+          }) 
+       })
+    }
+
+
+
 }
 
 

@@ -15,7 +15,7 @@
   \************************************/
 /***/ ((module) => {
 
-eval("class DOMNodeCollection {\n    constructor (arrayHtml) {\n        this.arrayHtml = arrayHtml;\n    }\n\n    html (string) {\n        if(!string) {\n            return this.arrayHtml[0].innerHTML;\n        } else {\n            this.arrayHtml.forEach(node => {\n                node.innerHTML = string;\n            });\n        }\n    }\n}\n\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n    constructor (arrayHtml) {\n        this.arrayHtml = arrayHtml;\n    }\n\n    html (string) {\n        if(string === undefined) {\n            return this.arrayHtml[0].innerHTML;\n        } else {\n            this.arrayHtml.forEach(node => {\n                node.innerHTML = string;\n            });\n        }\n    }\n\n    empty(){\n        this.html(\"\");\n    }\n\n    append(){\n       const argsArray =  Array.from(arguments);\n       argsArray.forEach(argEle => {\n          this.arrayHtml.forEach(htmlEle => {\n              if(typeof argEle === 'string'){\n                  htmlEle.innerHTML += argEle;\n              }else{\n                  htmlEle.appendChild(argEle);\n              }\n          }) \n       })\n    }\n\n\n\n}\n\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ })
 
@@ -49,7 +49,7 @@ eval("class DOMNodeCollection {\n    constructor (arrayHtml) {\n        this.arr
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nwindow.$l = (arg) => {\n\n    if(arg instanceof HTMLElement) {\n        const domCollection = new DOMNodeCollection([arg]);\n    } else if(arg instanceof String) { \n        const nodeList = document.querySelectorAll(arg);\n        const nodesArray = [...nodeList];\n        const domCollection = new DOMNodeCollection(nodesArray);\n    }\n    return domCollection;\n}\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nwindow.$l = (arg) => {\n\n    if(arg instanceof HTMLElement) {\n        const domCollection = new DOMNodeCollection([arg]);\n        return domCollection;\n    } else{ \n        const nodeList = document.querySelectorAll(arg);\n        const nodesArray = [...nodeList];\n        const domCollection = new DOMNodeCollection(nodesArray);\n        return domCollection;\n    }\n}\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 })();
 
 /******/ })()
