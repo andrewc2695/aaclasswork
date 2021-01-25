@@ -7,9 +7,50 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/dom_node_collection.js":
+/*!************************************!*\
+  !*** ./src/dom_node_collection.js ***!
+  \************************************/
+/***/ ((module) => {
+
+eval("class DOMNodeCollection {\n    constructor (arrayHtml) {\n        this.arrayHtml = arrayHtml;\n    }\n\n    html (string) {\n        if(!string) {\n            return this.arrayHtml[0].innerHTML;\n        } else {\n            this.arrayHtml.forEach(node => {\n                node.innerHTML = string;\n            });\n        }\n    }\n}\n\n\nmodule.exports = DOMNodeCollection;\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+(() => {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-eval("function $1(arg){\n    let nodeList = document.querySelectorAll(arg);\n    let nodesArray = [...nodeList];\n}\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection */ \"./src/dom_node_collection.js\");\n\nwindow.$l = (arg) => {\n\n    if(arg instanceof HTMLElement) {\n        const domCollection = new DOMNodeCollection([arg]);\n    } else if(arg instanceof String) { \n        const nodeList = document.querySelectorAll(arg);\n        const nodesArray = [...nodeList];\n        const domCollection = new DOMNodeCollection(nodesArray);\n    }\n    return domCollection;\n}\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+})();
+
 /******/ })()
 ;
