@@ -70,10 +70,18 @@ class DOMNodeCollection {
     }
 
     find(selector){
-        
+        const found = [];
+        this.arrayHtml.forEach(htmlEle => {
+            found.push(htmlEle.querySelectorAll(selectors));
+        });
+        return new DOMNodeCollection(found);
     }
 
-
+    remove(){
+        this.arrayHtml.forEach(htmlEle => {
+            htmlEle.parentNode.removeChild(htmlEle);
+        });
+    }
 }
 
 
