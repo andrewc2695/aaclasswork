@@ -53,6 +53,27 @@ class DOMNodeCollection {
     
     }
 
+    children(){
+        const childrenArr = [];
+        this.arrayHtml.forEach(htmlEle => {
+            childrenArr.push(htmlEle.childNodes);
+        });
+        return new DOMNodeCollection(childrenArr);
+    }
+
+    parent(){
+        const parentArr = [];
+        this.arrayHtml.forEach(htmlEle => {
+            parentArr.push(htmlEle.parentNode);
+        })
+        return new DOMNodeCollection(parentArr);
+    }
+
+    find(selector){
+        
+    }
+
+
 }
 
 
