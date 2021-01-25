@@ -30,7 +30,28 @@ class DOMNodeCollection {
        })
     }
 
+    addClass (newClass) {
+        this.arrayHtml.forEach(htmlEle => {
+            htmlEle.classList.add(newClass);
+        });
+    }
 
+    removeClass (className) {
+        this.arrayHtml.forEach(htmlEle => {
+            htmlEle.classList.remove(className);
+        })
+    }
+
+    attr (key, value) {
+        if(value === undefined) {
+            return this.arrayHtml[0].getAttribute(key);
+        } else {
+            this.arrayHtml.forEach(htmlEle => {
+                htmlEle.setAttribute(key, value);
+            });
+        }
+    
+    }
 
 }
 
