@@ -56,7 +56,7 @@ class DOMNodeCollection {
     children(){
         const childrenArr = [];
         this.arrayHtml.forEach(htmlEle => {
-            childrenArr.push(htmlEle.childNodes);
+            childrenArr.push(htmlEle.children);
         });
         return new DOMNodeCollection(childrenArr);
     }
@@ -64,7 +64,7 @@ class DOMNodeCollection {
     parent(){
         const parentArr = [];
         this.arrayHtml.forEach(htmlEle => {
-            parentArr.push(htmlEle.parentNode);
+            parentArr.push(htmlEle.parentElement);
         })
         return new DOMNodeCollection(parentArr);
     }
@@ -72,7 +72,7 @@ class DOMNodeCollection {
     find(selector){
         const found = [];
         this.arrayHtml.forEach(htmlEle => {
-            found.push(htmlEle.querySelectorAll(selectors));
+            found.push(htmlEle.querySelectorAll(selector));
         });
         return new DOMNodeCollection(found);
     }
@@ -82,6 +82,27 @@ class DOMNodeCollection {
             htmlEle.parentNode.removeChild(htmlEle);
         });
     }
+
+
+    on(event, callback){
+        this.arrayHtml.forEach(htmlEle => {
+            if(typeof htmlEle[event] === "undefined"){
+                htmlEle[event] = [];
+            }
+            htmlEle[event].push(callback);
+            htmlEle.addEventListener(event, callback);
+            
+        });
+    }
+
+    off(event){
+        this.arrayHtml.forEach(htmlEle => {
+            debugger
+            const cb = htmlEle[event][0];
+            htmlEle.removeEventListener(event, cb);
+        });
+    }
+
 }
 
 
