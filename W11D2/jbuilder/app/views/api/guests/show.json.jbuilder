@@ -1,11 +1,12 @@
-# json.extract! @guest, :name, :age, :favorite_color 
 json.partial! @guest, as: :guest
 
-# json.guests do |guest|
-#     json.extract! guest.gifts  
-# end
-
 json.gifts do 
-    json.title gift.title
-    json.description gift.description
+    json.array! @guest.gifts do |gift|
+        json.extract! gift, :title, :description
+    end
 end
+
+#syntactic sugar way
+# json.gifts do 
+#     json.array! @guest.gifts, :title, :description
+# end
