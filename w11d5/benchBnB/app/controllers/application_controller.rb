@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
   #CRLLL
   helper_method :current_user, :logged_in?
 
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logout!
+    # debugger
     current_user.reset_session_token
     session[:session_token] = nil
     @current_user = nil

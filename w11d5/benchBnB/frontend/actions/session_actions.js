@@ -12,7 +12,7 @@ const receiveCurrentUser = (currentUser) => {
     })
 };
 
-const logoutCurrentUSer = () => {
+const logoutCurrentUser = () => {
     return ({
         type: LOGOUT_CURRENT_USER,
     })
@@ -32,5 +32,5 @@ export const thunkSignup = (formUser) => dispatch => signup(formUser)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)));
 
 export const thunkLogout = () => dispatch => logout()
-    .then(() => dispatch(logoutCurrentUSer));
+    .then(() => dispatch(logoutCurrentUser()));
     

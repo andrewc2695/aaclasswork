@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { thunkLogout } from "../actions/session_actions"
+import Greeting from "./greeting"
 
 
 const mapStatetoProps = (state) => {
@@ -10,7 +11,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        logout: dispatch(thunkLogout)
+        logout: () => dispatch(thunkLogout())
     }
 }
 

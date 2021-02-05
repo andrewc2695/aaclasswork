@@ -1,4 +1,5 @@
 class Api::SessionsController < ApplicationController
+
   def create
     @user = User.find_by_credentials(params[:user][:email],
                                      params[:user][:password])
@@ -11,6 +12,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
+    # debugger
     if !current_user
       render json: ["Not logged in!"], status: 404
     else
